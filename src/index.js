@@ -12,7 +12,7 @@ ReactIntlFlattenPlugin.prototype.apply = function (compiler) {
   let langOutputDir    = this.pluginOptions.langOutputDir ||
                           'i18n';
 
-  compiler.plugin('emit', function (compilation, callback) {
+  compiler.hooks.emit.tapAsync('ReactIntlFlattenPlugin', (compilation, callback) => {
     const AGGREGATE_PATTERN = path.resolve(__dirname, aggregatePattern);
 
     console.log('Retrieving aggregate files matching: ' + AGGREGATE_PATTERN);
